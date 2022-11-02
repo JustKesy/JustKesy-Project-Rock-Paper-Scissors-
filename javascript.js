@@ -1,4 +1,4 @@
-console.log("Hello World");
+console.log("Write 'game()' under this line!");
 const computerChoice = ["rock", "paper", "scissors"];
 function getComputerChoice() {
   let choice = Math.floor(Math.random() * computerChoice.length);
