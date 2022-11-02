@@ -39,9 +39,12 @@ function round(playerSelection, computerSelection) {
 
 function game() {
   for (let i = 0; i <= 5; i++) {
-    if (i < 5) {
+    if (i < 4) {
       round();
       alert(`Machine: ${computer};\nYou ${player};\nChoose Again!`);
+    } else if (i < 5) {
+      round();
+      alert(`Machine: ${computer};\nYou ${player};\nAnd the WINNER IS...`);
     } else {
       if (player > computer) {
         alert("You WIN!!!");
