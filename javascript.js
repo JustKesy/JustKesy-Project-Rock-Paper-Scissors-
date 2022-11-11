@@ -9,50 +9,57 @@ let player = 0;
 let computer = 0;
 
 function round(playerSelection, computerSelection) {
-  let userChoice = prompt("Chose between:\n-Rock\n-Paper\n-Scissors");
-  playerSelection = userChoice.toLowerCase();
-  computerSelection = getComputerChoice();
   if (playerSelection == "rock" && computerSelection == "scissors") {
-    alert("Rock beats Scissors!\nYou WIN!");
+    res.innerHTML = "Rock beats Scissors! You WIN!";
     player++;
   } else if (playerSelection == "rock" && computerSelection == "paper") {
-    alert("Paper beats Rock!\nMachine WIN!");
+    res.innerHTML = "Paper beats Rock! Machine WIN!";
     computer++;
   } else if (playerSelection == "scissors" && computerSelection == "paper") {
-    alert("Scissors beats Paper!\nYou WIN!");
+    res.innerHTML = "Scissors beats Paper! You WIN!";
     player++;
   } else if (playerSelection == "scissors" && computerSelection == "rock") {
-    alert("Rock beats Scissors!\nMachine WIN!");
+    res.innerHTML = "Rock beats Scissors! Machine WIN!";
     computer++;
   } else if (playerSelection == "paper" && computerSelection == "rock") {
-    alert("Paper beats Rock!\nYou WIN!");
+    res.innerHTML = "Paper beats Rock! You WIN!";
     player++;
   } else if (playerSelection == "paper" && computerSelection == "scissors") {
-    alert("Scissors beats Paper!\nMachine WIN!");
+    res.innerHTML = "Scissors beats Paper! Machine WIN!";
     computer++;
   } else {
-    alert("TIE!!");
+    res.innerHTML = "TIE!!";
   }
+
   console.log(computerSelection);
   console.log(playerSelection);
 }
 
-function game() {
-  for (let i = 0; i <= 5; i++) {
-    if (i < 4) {
-      round();
-      alert(`Machine: ${computer};\nYou ${player};\nChoose Again!`);
-    } else if (i < 5) {
-      round();
-      alert(`Machine: ${computer};\nYou ${player};\nAnd the WINNER IS...`);
-    } else {
-      if (player > computer) {
-        alert("You WIN!!!");
-      } else if (player < computer) {
-        alert("Machine WIN!!!");
-      } else {
-        alert("It's TIE!\n WAR IS OVER");
-      }
-    }
+let buttons = document.querySelectorAll("button");
+
+buttons.forEach((btn) =>
+  btn.addEventListener("click", (e) =>
+    round(e.target.textContent, getComputerChoice())
+  )
+);
+let user = document.querySelector(".user");
+console.log(user.textContent);
+let mach = document.querySelector(".machine");
+console.log(mach.textContent);
+let res = document.querySelector(".result");
+let win = document.querySelector(".winner");
+
+window.addEventListener("click", () => {
+  if (player < 5 && computer < 5) {
+    user.innerHTML = `User: ${player}`;
+    mach.innerHTML = `Machine: ${computer}`;
+  } else if (player === 5) {
+    user.innerHTML = "You WIN!!";
+    mach.innerHTML = `Machine: ${computer}`;
+    win.innerHTML = "Well done!! You WIN!!";
+  } else if (computer === 5) {
+    user.innerHTML = `User: ${player}`;
+    mach.innerHTML = "Machine WIN!!";
+    win.innerHTML = "More luck next time! Machine WIN!!";
   }
-}
+});
